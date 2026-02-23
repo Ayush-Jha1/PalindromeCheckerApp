@@ -1,13 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+/*
+ * Application Name  : Palindrome Checker App
+ * Version           : 1.0
+ * Description       : Console-based application to check palindrome strings.
+ * Author            : Your Name
+ */
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class PalindromeCheckerApp {
+
+    // Main method - Entry point of the Java Application
+    public static void main(String[] args) {
+
+        // Display Welcome Message
+        System.out.println("=======================================");
+        System.out.println("      Welcome to Palindrome Checker App");
+        System.out.println("=======================================");
+        System.out.println("Application Version : 1.0");
+        System.out.println("This application checks whether a given string is a palindrome.");
+        System.out.println("=======================================");
+
+        // Application flow continues to next use case
+        System.out.println("Program started successfully...");
     }
 }
