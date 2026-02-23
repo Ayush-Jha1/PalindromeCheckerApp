@@ -9,21 +9,28 @@ public class PalindromeCheckerApp {
     // Main Method - Entry point of the Java Application
     public static void main(String[] args) {
 
-        // UC3: Palindrome Check Using String Reverse
+        // UC4: Character Array Based Palindrome Check
 
-        String original = "madam";   // You can change this word
-        String reversed = "";
+        String word = "madam"; // You can change this string
+        char[] chars = word.toCharArray();
 
-        // Reverse the string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        boolean isPalindrome = true; // Assume palindrome initially
+        int start = 0;
+        int end = chars.length - 1;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        // Compare original and reversed string
-        if (original.equals(reversed)) {
-            System.out.println("The string '" + original + "' is a Palindrome.");
+        if (isPalindrome) {
+            System.out.println("The word '" + word + "' is a Palindrome.");
         } else {
-            System.out.println("The string '" + original + "' is NOT a Palindrome.");
+            System.out.println("The word '" + word + "' is NOT a Palindrome.");
         }
     }
 }
