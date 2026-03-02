@@ -1,35 +1,35 @@
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC5.
+     * Application entry point for UC7.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Declare and initialize the input string.
-        String input = "noon";
+        // Declare and initialize input string
+        String input = "level";
 
-        // Create a Stack to store characters.
-        Stack<Character> stack = new Stack<>();
+        // Create Deque (Double Ended Queue)
+        Deque<Character> deque = new LinkedList<>();
 
-        // Push each character of the string into the stack.
+        // Insert characters into deque
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            deque.addLast(c);   // Add at rear
         }
 
-        // Assume palindrome initially.
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Iterate again through original string.
-        for (char c : input.toCharArray()) {
+        // Compare front and rear until size > 1
+        while (deque.size() > 1) {
 
-            // Pop character from stack
-            char poppedChar = stack.pop();
+            char front = deque.removeFirst();  // Remove from front
+            char rear = deque.removeLast();    // Remove from rear
 
-            // Compare original and popped character
-            if (c != poppedChar) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
