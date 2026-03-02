@@ -1,40 +1,35 @@
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC6.
+     * Application entry point for UC7.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Declare and initialize the input string
-        String input = "madam";
+        // Declare and initialize input string
+        String input = "level";
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
+        // Create Deque (Double Ended Queue)
+        Deque<Character> deque = new LinkedList<>();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Add characters to both Queue and Stack
+        // Insert characters into deque
         for (char c : input.toCharArray()) {
-            queue.add(c);     // Enqueue
-            stack.push(c);    // Push
+            deque.addLast(c);   // Add at rear
         }
 
         // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Compare dequeue (FIFO) with pop (LIFO)
-        while (!queue.isEmpty()) {
+        // Compare front and rear until size > 1
+        while (deque.size() > 1) {
 
-            char fromQueue = queue.remove();  // Dequeue (front)
-            char fromStack = stack.pop();     // Pop (top)
+            char front = deque.removeFirst();  // Remove from front
+            char rear = deque.removeLast();    // Remove from rear
 
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
