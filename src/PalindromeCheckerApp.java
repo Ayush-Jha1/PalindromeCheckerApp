@@ -3,34 +3,47 @@
  * Version          : 1.0
  * Description      : Console-based application to validate palindrome strings.
  */
-
+import java.util.Stack;
 public class PalindromeCheckerApp {
 
-    // Main Method - Entry point of the Java Application
+    /**
+     * Application entry point for UC5.
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
 
-        // UC4: Character Array Based Palindrome Check
+        // Declare and initialize the input string
+        String input = "noon";
 
-        String word = "madam"; // You can change this string
-        char[] chars = word.toCharArray();
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        boolean isPalindrome = true; // Assume palindrome initially
-        int start = 0;
-        int end = chars.length - 1;
+        // Push each character of the string into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+
+        // Iterate again through original string
+        for (char c : input.toCharArray()) {
+
+            // Pop character from stack
+            char poppedChar = stack.pop();
+
+            // Compare original character with popped character
+            if (c != poppedChar) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
+        // Display result
         if (isPalindrome) {
-            System.out.println("The word '" + word + "' is a Palindrome.");
+            System.out.println(input + " is a Palindrome.");
         } else {
-            System.out.println("The word '" + word + "' is NOT a Palindrome.");
+            System.out.println(input + " is NOT a Palindrome.");
         }
     }
 }
