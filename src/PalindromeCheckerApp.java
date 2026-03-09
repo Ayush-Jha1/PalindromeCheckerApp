@@ -6,33 +6,29 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UC9.
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
-        // Create Scanner object
-        Scanner scanner = new Scanner(System.in);
+        // Input string
+        String input = "A man a plan a canal Panama";
 
-        // Ask user for input
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        // Step 1: Convert to lowercase
+        String normalized = input.toLowerCase();
 
-        // Reverse the string
+        // Step 2: Remove spaces and special characters
+        normalized = normalized.replaceAll("[^a-z0-9]", "");
+
+        // Step 3: Reverse the normalized string
         String reversed = "";
 
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        for (int i = normalized.length() - 1; i >= 0; i--) {
+            reversed = reversed + normalized.charAt(i);
         }
 
-        // Compare original and reversed
-        if (input.equals(reversed)) {
-            System.out.println(input + " is a Palindrome.");
+        // Step 4: Compare normalized string with reversed
+        if (normalized.equals(reversed)) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
         } else {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
         }
-
-        scanner.close();
     }
 }
