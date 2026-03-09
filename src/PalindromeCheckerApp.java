@@ -4,44 +4,76 @@ import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UC6.
-     * @param args Command-line arguments
-     */
-    public static void main(String[] args) {
+    // Node class for Singly Linked List
+    static class Node {
+        char data;
+        Node next;
 
-        // Declare and initialize the input string
-        String input = "madam";
-
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
-
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Add characters to both Queue and Stack
-        for (char c : input.toCharArray()) {
-            queue.add(c);     // Enqueue
-            stack.push(c);    // Push
+        Node(char data) {
+            this.data = data;
+            this.next = null;
         }
+    }
 
-        // Assume palindrome initially
-        boolean isPalindrome = true;
+    // Method to check palindrome using Linked List
+    public static boolean isPalindrome(String input) {
 
-        // Compare dequeue (FIFO) with pop (LIFO)
-        while (!queue.isEmpty()) {
+        // Step 1: Convert string into linked list
+        Node head = null, tail = null;
 
-            char fromQueue = queue.remove();  // Dequeue (front)
-            char fromStack = stack.pop();     // Pop (top)
+        for (char c : input.toCharArray()) {
+            Node newNode = new Node(c);
 
-            if (fromQueue != fromStack) {
-                isPalindrome = false;
-                break;
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
             }
         }
 
-        // Display result
-        if (isPalindrome) {
+        // Step 2: Find middle using fast and slow pointers
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 3: Reverse second half
+        Node prev = null;
+        Node current = slow;
+
+        while (current != null) {
+            Node nextTemp = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextTemp;
+        }
+
+        // Step 4: Compare first half and reversed second half
+        Node firstHalf = head;
+        Node secondHalf = prev;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
+                return false;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+
+        return true;
+    }
+
+    // Main method
+    public static void main(String[] args) {
+
+        String input = "radar";
+
+        if (isPalindrome(input)) {
             System.out.println(input + " is a Palindrome.");
         } else {
             System.out.println(input + " is NOT a Palindrome.");
